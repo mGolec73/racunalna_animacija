@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxhf0fibh8jj6"]
+
+[ext_resource type="PackedScene" uid="uid://cnjdbvc4xuiuy" path="res://assets/Models/sled.glb" id="1_smf0c"]
+
+[node name="sled2" instance=ExtResource("1_smf0c")]

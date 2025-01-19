@@ -1,0 +1,84 @@
+[gd_scene load_steps=13 format=3 uid="uid://docunqodovklr"]
+
+[ext_resource type="Texture2D" uid="uid://skg45gqelsci" path="res://assets/Models/Textures/27502.jpg" id="1_qckpa"]
+[ext_resource type="PackedScene" uid="uid://dsa4o6vg2i0jb" path="res://obstacles/lantern_2.tscn" id="2_tmju7"]
+[ext_resource type="PackedScene" uid="uid://blpfx4gjbp5ds" path="res://assets/Models/snow-flat.glb" id="3_5h0s6"]
+[ext_resource type="PackedScene" uid="uid://eclars717ews" path="res://scenes/pick_up.tscn" id="4_td7mq"]
+[ext_resource type="PackedScene" uid="uid://78ykg6egtxbl" path="res://obstacles/candy_cane_red_2.tscn" id="5_x6y4w"]
+[ext_resource type="PackedScene" uid="uid://5ohtwyfmc3n2" path="res://obstacles/house.tscn" id="6_okqn6"]
+[ext_resource type="PackedScene" uid="uid://x8o4prxynte7" path="res://obstacles/lights_colored_2.tscn" id="7_cd5nf"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_i3wb1"]
+size = Vector2(10, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dvkn6"]
+albedo_texture = ExtResource("1_qckpa")
+uv1_scale = Vector3(1, 1, 2)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0ydkt"]
+data = PackedVector3Array(5, 0, 10, -5, 0, 10, 5, 0, -10, -5, 0, 10, -5, 0, -10, 5, 0, -10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_um5ln"]
+size = Vector3(0.1, 5, 20)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_wfdjf"]
+data = PackedVector3Array(-0.05, 2.5, 10, 0.05, 2.5, 10, -0.05, -2.5, 10, 0.05, 2.5, 10, 0.05, -2.5, 10, -0.05, -2.5, 10, 0.05, 2.5, -10, -0.05, 2.5, -10, 0.05, -2.5, -10, -0.05, 2.5, -10, -0.05, -2.5, -10, 0.05, -2.5, -10, 0.05, 2.5, 10, 0.05, 2.5, -10, 0.05, -2.5, 10, 0.05, 2.5, -10, 0.05, -2.5, -10, 0.05, -2.5, 10, -0.05, 2.5, -10, -0.05, 2.5, 10, -0.05, -2.5, -10, -0.05, 2.5, 10, -0.05, -2.5, 10, -0.05, -2.5, -10, 0.05, 2.5, 10, -0.05, 2.5, 10, 0.05, 2.5, -10, -0.05, 2.5, 10, -0.05, 2.5, -10, 0.05, 2.5, -10, -0.05, -2.5, 10, 0.05, -2.5, 10, -0.05, -2.5, -10, 0.05, -2.5, 10, 0.05, -2.5, -10, -0.05, -2.5, -10)
+
+[node name="Terrain_0" type="MeshInstance3D"]
+transform = Transform3D(0.999975, 0, 0.00712088, 0, 1, 0, -0.00712088, 0, 0.999975, 0, 0, -9.64067)
+mesh = SubResource("PlaneMesh_i3wb1")
+surface_material_override/0 = SubResource("StandardMaterial3D_dvkn6")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_0ydkt")
+
+[node name="barrier" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2.5, 0)
+visible = false
+mesh = SubResource("BoxMesh_um5ln")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="barrier"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="barrier/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_wfdjf")
+
+[node name="barrier2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2.5, 0)
+visible = false
+mesh = SubResource("BoxMesh_um5ln")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="barrier2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="barrier2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_wfdjf")
+
+[node name="lantern2" parent="." instance=ExtResource("2_tmju7")]
+transform = Transform3D(2.99992, 0, -0.0213626, 0, 3, 0, 0.0213626, 0, 2.99992, -4.45136, 9.53674e-07, 4.80921)
+
+[node name="snow-flat2" parent="." instance=ExtResource("3_5h0s6")]
+transform = Transform3D(2.49994, 0, -0.0178022, 0, 2.5, 0, 0.0178022, 0, 2.49994, -2.95748, -4.76837e-07, 9.81805)
+
+[node name="pickUp" parent="." instance=ExtResource("4_td7mq")]
+transform = Transform3D(1.99995, 0, -0.0142417, 0, 2, 0, 0.0142417, 0, 1.99995, -1.3881, 1.42384, 5.45306)
+
+[node name="pickUp3" parent="." instance=ExtResource("4_td7mq")]
+transform = Transform3D(1.99995, 0, -0.0142417, 0, 2, 0, 0.0142417, 0, 1.99995, 1.06846, 1.42384, 7.11785)
+
+[node name="pickUp4" parent="." instance=ExtResource("4_td7mq")]
+transform = Transform3D(1.99995, 0, -0.0142417, 0, 2, 0, 0.0142417, 0, 1.99995, -1.24053, 1.42384, 9.38321)
+
+[node name="pickUp2" parent="." instance=ExtResource("4_td7mq")]
+transform = Transform3D(1.99995, 0, -0.0142417, 0, 2, 0, 0.0142417, 0, 1.99995, 1.50681, 1.42384, -4.09119)
+
+[node name="candy-cane-red2" parent="." instance=ExtResource("5_x6y4w")]
+transform = Transform3D(-6.43693, 0, 2.75063, 0, 7, 0, -2.75063, 0, -6.43693, -1.56837, 9.53674e-07, -0.199349)
+
+[node name="cabin-door-rotate2" parent="." instance=ExtResource("6_okqn6")]
+transform = Transform3D(2.99992, 0, -0.0213626, 0, 3, 0, 0.0213626, 0, 2.99992, 1.25296, 0.220598, -6.77632)
+
+[node name="lights-colored2" parent="." instance=ExtResource("7_cd5nf")]
+transform = Transform3D(3.9999, 0, -0.0284835, 0, 4, 0, 0.0284835, 0, 3.9999, 1.05572, 5.188, -2.65003)

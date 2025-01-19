@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://k65sjcq6qwnf"]
+
+[ext_resource type="PackedScene" uid="uid://x234270gmg5t" path="res://assets/Models/snowman.glb" id="1_0uagy"]
+
+[node name="snowman2" instance=ExtResource("1_0uagy")]

@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://d2c64unn524e5"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_0gepu"]
+[ext_resource type="PackedScene" uid="uid://dl1hw6540aiph" path="res://scenes/player_skin_2.tscn" id="2_k6vgn"]
+[ext_resource type="PackedScene" uid="uid://l2pnyrftvslw" path="res://scenes/terrain_controller.tscn" id="3_tfc6l"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_13oye"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_fa3wi"]
+sky_material = SubResource("ProceduralSkyMaterial_13oye")
+
+[sub_resource type="Environment" id="Environment_f0srm"]
+background_mode = 2
+sky = SubResource("Sky_fa3wi")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_wjqkb"]
+font_size = 30
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_05b31"]
+font_size = 30
+font_color = Color(0, 0, 0, 0.988235)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u8oh3"]
+size = Vector3(0.764221, 1.63727, 0.820313)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mnces"]
+
+[node name="World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_f0srm")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" type="CharacterBody3D" parent="." groups=["Player"]]
+unique_name_in_owner = true
+script = ExtResource("1_0gepu")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 1.99448, 1.39509)
+fov = 115.4
+
+[node name="TimerLabel" type="Label" parent="Player/Camera3D"]
+offset_left = 20.0
+offset_right = 174.0
+offset_bottom = 55.0
+label_settings = SubResource("LabelSettings_wjqkb")
+
+[node name="PickUpLabel" type="Label" parent="Player/Camera3D"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -79.0
+offset_bottom = 51.0
+grow_horizontal = 0
+label_settings = SubResource("LabelSettings_05b31")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0017395, 0.700592, 0.0898438)
+shape = SubResource("BoxShape3D_u8oh3")
+
+[node name="player_skin2" parent="Player" instance=ExtResource("2_k6vgn")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="TerrainController" parent="." instance=ExtResource("3_tfc6l")]
+
+[node name="environment" type="MeshInstance3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, -0.5, 0)
+mesh = SubResource("PlaneMesh_mnces")

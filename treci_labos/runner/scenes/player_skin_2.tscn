@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dl1hw6540aiph"]
+
+[ext_resource type="PackedScene" uid="uid://bxhf0fibh8jj6" path="res://scenes/sled_2.tscn" id="1_2eu05"]
+[ext_resource type="PackedScene" uid="uid://k65sjcq6qwnf" path="res://scenes/snowman_2.tscn" id="2_exvg0"]
+
+[node name="player_skin2" type="Node3D"]
+
+[node name="sled2" parent="." instance=ExtResource("1_2eu05")]
+
+[node name="snowman2" parent="." instance=ExtResource("2_exvg0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -0.1)

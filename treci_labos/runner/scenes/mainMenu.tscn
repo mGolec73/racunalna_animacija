@@ -1,0 +1,97 @@
+[gd_scene load_steps=15 format=3 uid="uid://cmb534fivshfb"]
+
+[ext_resource type="PackedScene" uid="uid://dhc1lwhd0ua3x" path="res://scenes/player_skin.tscn" id="1_se5w2"]
+[ext_resource type="PackedScene" uid="uid://cj3rs2iq2bkqq" path="res://obstacles/rocks_large_2.tscn" id="2_h5bcc"]
+[ext_resource type="PackedScene" uid="uid://b0d64nu6rf6qh" path="res://assets/Models/snow-flat-large.glb" id="3_1ove6"]
+[ext_resource type="PackedScene" uid="uid://cemp1xoc72pr2" path="res://obstacles/tree_snow_a_2.tscn" id="4_pfrwb"]
+[ext_resource type="PackedScene" uid="uid://eclars717ews" path="res://scenes/pick_up.tscn" id="5_jlf3i"]
+[ext_resource type="PackedScene" uid="uid://rgb1kdnlflwa" path="res://assets/Models/reindeer.glb" id="7_kc18u"]
+[ext_resource type="PackedScene" uid="uid://d3fucygumdheu" path="res://obstacles/nutcracker_2.tscn" id="7_xlont"]
+[ext_resource type="PackedScene" uid="uid://78ykg6egtxbl" path="res://obstacles/candy_cane_red_2.tscn" id="8_f23s5"]
+[ext_resource type="PackedScene" uid="uid://dsa4o6vg2i0jb" path="res://obstacles/lantern_2.tscn" id="9_dx7nb"]
+[ext_resource type="Script" path="res://scripts/buttons.gd" id="10_f0tiu"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2xc43"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_t6u5p"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_c3xk5"]
+sky_material = SubResource("ProceduralSkyMaterial_t6u5p")
+
+[sub_resource type="Environment" id="Environment_5mcue"]
+background_mode = 2
+sky = SubResource("Sky_c3xk5")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="MainMenu" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9937, 0.112076, 0, -0.112076, 0.9937, 0, 1.42914, 0.266064)
+
+[node name="player_skin" parent="." instance=ExtResource("1_se5w2")]
+transform = Transform3D(0.911296, 0, 0.411753, 0, 1, 0, -0.411753, 0, 0.911296, -0.974782, 0, -1.65597)
+
+[node name="rocks-large2" parent="." instance=ExtResource("2_h5bcc")]
+transform = Transform3D(1.68943, 0, -0.18932, 0, 1.7, 0, 0.18932, 0, 1.68943, 2.01139, 0, -6.49006)
+
+[node name="snow-flat-large2" parent="." instance=ExtResource("3_1ove6")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -0.287635, -0.491617, -2.30189)
+
+[node name="tree-snow-a2" parent="." instance=ExtResource("4_pfrwb")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.888998, 0, -4.26467)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+mesh = SubResource("PlaneMesh_2xc43")
+
+[node name="Area3D" parent="." instance=ExtResource("5_jlf3i")]
+transform = Transform3D(0.813395, 0, 0.581711, 0, 1, 0, -0.581711, 0, 0.813395, -2.07673, 0.160316, -1.5871)
+
+[node name="reindeer2" parent="." instance=ExtResource("7_kc18u")]
+transform = Transform3D(1.47096, 0, -0.293714, 0, 1.5, 0, 0.293714, 0, 1.47096, 1.16943, 1.43049, -5.54178)
+
+[node name="nutcracker2" parent="." instance=ExtResource("7_xlont")]
+transform = Transform3D(1.48701, 0, -1.33746, 0, 2, 0, 1.33746, 0, 1.48701, 2.04599, 0, -2.38389)
+
+[node name="candy-cane-red2" parent="." instance=ExtResource("8_f23s5")]
+transform = Transform3D(-0.47932, 0.980181, 1.02932, 0.419016, 1.13544, -0.886115, -1.35819, 0.00437955, -0.636634, 2.27887, 0.282704, -1.86321)
+
+[node name="lantern2" parent="." instance=ExtResource("9_dx7nb")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -3.38903, 0, -3.91984)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5mcue")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -109.5
+offset_top = -65.0
+offset_right = 109.5
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("10_f0tiu")
+
+[node name="StartButton" type="Button" parent="Buttons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Start game"
+
+[node name="QuitButton" type="Button" parent="Buttons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Quit game"
+
+[connection signal="pressed" from="Buttons/StartButton" to="Buttons" method="_on_start_button_pressed"]
+[connection signal="pressed" from="Buttons/QuitButton" to="Buttons" method="_on_quit_button_pressed"]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhc1lwhd0ua3x"]
+
+[ext_resource type="PackedScene" uid="uid://b5yssodd6kdrp" path="res://assets/Models/snowman-hat.glb" id="1_40miy"]
+[ext_resource type="PackedScene" uid="uid://cnjdbvc4xuiuy" path="res://assets/Models/sled.glb" id="2_k1ytb"]
+
+[node name="player_skin" instance=ExtResource("1_40miy")]
+
+[node name="snowman-hat" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -0.1)
+
+[node name="sled2" parent="." index="1" instance=ExtResource("2_k1ytb")]

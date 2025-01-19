@@ -1,0 +1,98 @@
+[gd_scene load_steps=15 format=3 uid="uid://dku6gtqay7td1"]
+
+[ext_resource type="Texture2D" uid="uid://skg45gqelsci" path="res://assets/Models/Textures/27502.jpg" id="1_rq1qw"]
+[ext_resource type="PackedScene" uid="uid://cemp1xoc72pr2" path="res://obstacles/tree_snow_a_2.tscn" id="2_chnmt"]
+[ext_resource type="PackedScene" uid="uid://dsa4o6vg2i0jb" path="res://obstacles/lantern_2.tscn" id="3_cwsne"]
+[ext_resource type="PackedScene" uid="uid://blpfx4gjbp5ds" path="res://assets/Models/snow-flat.glb" id="4_ptx28"]
+[ext_resource type="PackedScene" uid="uid://eclars717ews" path="res://scenes/pick_up.tscn" id="5_d4a87"]
+[ext_resource type="PackedScene" uid="uid://n6rvh7q2bem" path="res://obstacles/rocks_small_2.tscn" id="6_t2oqb"]
+[ext_resource type="PackedScene" uid="uid://ddcflefct376e" path="res://obstacles/tree_snow_c_2.tscn" id="7_x25bl"]
+[ext_resource type="PackedScene" uid="uid://blmbe7yj67lyk" path="res://obstacles/tree_2.tscn" id="8_tscof"]
+[ext_resource type="PackedScene" uid="uid://nbp0otrxwpgc" path="res://obstacles/rocks_medium_2.tscn" id="9_sv6go"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_i3wb1"]
+size = Vector2(10, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dvkn6"]
+albedo_texture = ExtResource("1_rq1qw")
+uv1_scale = Vector3(1, 1, 2)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0ydkt"]
+data = PackedVector3Array(5, 0, 10, -5, 0, 10, 5, 0, -10, -5, 0, 10, -5, 0, -10, 5, 0, -10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_um5ln"]
+size = Vector3(0.1, 5, 20)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_wfdjf"]
+data = PackedVector3Array(-0.05, 2.5, 10, 0.05, 2.5, 10, -0.05, -2.5, 10, 0.05, 2.5, 10, 0.05, -2.5, 10, -0.05, -2.5, 10, 0.05, 2.5, -10, -0.05, 2.5, -10, 0.05, -2.5, -10, -0.05, 2.5, -10, -0.05, -2.5, -10, 0.05, -2.5, -10, 0.05, 2.5, 10, 0.05, 2.5, -10, 0.05, -2.5, 10, 0.05, 2.5, -10, 0.05, -2.5, -10, 0.05, -2.5, 10, -0.05, 2.5, -10, -0.05, 2.5, 10, -0.05, -2.5, -10, -0.05, 2.5, 10, -0.05, -2.5, 10, -0.05, -2.5, -10, 0.05, 2.5, 10, -0.05, 2.5, 10, 0.05, 2.5, -10, -0.05, 2.5, 10, -0.05, 2.5, -10, 0.05, 2.5, -10, -0.05, -2.5, 10, 0.05, -2.5, 10, -0.05, -2.5, -10, 0.05, -2.5, 10, 0.05, -2.5, -10, -0.05, -2.5, -10)
+
+[node name="Terrain_0" type="MeshInstance3D"]
+transform = Transform3D(0.999975, 0, 0.00712088, 0, 1, 0, -0.00712088, 0, 0.999975, 0, 0, -9.64067)
+mesh = SubResource("PlaneMesh_i3wb1")
+surface_material_override/0 = SubResource("StandardMaterial3D_dvkn6")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_0ydkt")
+
+[node name="barrier" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2.5, 0)
+visible = false
+mesh = SubResource("BoxMesh_um5ln")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="barrier"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="barrier/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_wfdjf")
+
+[node name="barrier2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2.5, 0)
+visible = false
+mesh = SubResource("BoxMesh_um5ln")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="barrier2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="barrier2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_wfdjf")
+
+[node name="tree-snow-a2" parent="." instance=ExtResource("2_chnmt")]
+transform = Transform3D(2.49994, 0, -0.0178022, 0, 2.5, 0, 0.0178022, 0, 2.49994, -2.72024, 0, -7.98436)
+
+[node name="tree-snow-a3" parent="." instance=ExtResource("2_chnmt")]
+transform = Transform3D(2.49994, 0, -0.0178022, 0, 2.5, 0, 0.0178022, 0, 2.49994, 1.65645, 0, -7.95319)
+
+[node name="lantern2" parent="." instance=ExtResource("3_cwsne")]
+transform = Transform3D(2.99992, 0, -0.0213626, 0, 3, 0, 0.0213626, 0, 2.99992, -4.43105, 9.53674e-07, 1.95651)
+
+[node name="snow-flat2" parent="." instance=ExtResource("4_ptx28")]
+transform = Transform3D(2.49994, 0, -0.0178022, 0, 2.5, 0, 0.0178022, 0, 2.49994, -2.95748, -4.76837e-07, 9.81805)
+
+[node name="pickUp" parent="." instance=ExtResource("5_d4a87")]
+transform = Transform3D(1.99995, 0, -0.0142417, 0, 2, 0, 0.0142417, 0, 1.99995, -1.3881, 1.42384, 5.45306)
+
+[node name="pickUp4" parent="." instance=ExtResource("5_d4a87")]
+transform = Transform3D(1.99995, 0, -0.0142417, 0, 2, 0, 0.0142417, 0, 1.99995, -0.277199, 1.42384, 2.92976)
+
+[node name="pickUp3" parent="." instance=ExtResource("5_d4a87")]
+transform = Transform3D(1.99995, 0, -0.0142417, 0, 2, 0, 0.0142417, 0, 1.99995, -2.68893, 1.42384, 8.04295)
+
+[node name="pickUp2" parent="." instance=ExtResource("5_d4a87")]
+transform = Transform3D(1.99995, 0, -0.0142417, 0, 2, 0, 0.0142417, 0, 1.99995, 1.148, 1.42384, 0.242375)
+
+[node name="rocks-small2" parent="." instance=ExtResource("6_t2oqb")]
+transform = Transform3D(1.99995, 0, -0.0142418, 0, 2, 0, 0.0142418, 0, 1.99995, -1.48607, 0, -4.99531)
+
+[node name="tree-snow-c2" parent="." instance=ExtResource("7_x25bl")]
+transform = Transform3D(2.29994, 0, -0.016378, 0, 2.3, 0, 0.016378, 0, 2.29994, 4.02966, -9.53674e-07, 0.705664)
+
+[node name="tree2" parent="." instance=ExtResource("8_tscof")]
+transform = Transform3D(2.99992, 0, -0.0213626, 0, 3, 0, 0.0213626, 0, 2.99992, -3.76345, 0, -1.03379)
+
+[node name="tree3" parent="." instance=ExtResource("8_tscof")]
+transform = Transform3D(1.99995, 0, -0.0142417, 0, 2, 0, 0.0142417, 0, 1.99995, 1.3201, 0, 6.22828)
+
+[node name="rocks-medium2" parent="." instance=ExtResource("9_sv6go")]
+transform = Transform3D(1.30219, 0, -0.744507, 0, 1.5, 0, 0.744507, 0, 1.30219, 3.62503, 9.53674e-07, 8.39025)
