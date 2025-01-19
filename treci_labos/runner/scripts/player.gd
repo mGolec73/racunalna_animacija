@@ -24,11 +24,14 @@ func _physics_process(delta: float) -> void:
 	if collision:
 		var collider = collision.get_collider()  
 		if collider and collider.is_in_group("Obstacle"): #otkrivanje kolizije s preprekom
-			end_game()		
-	move_and_slide()
+			GameManager.loadEndScene()
+			#end_game()		
+	if GameManager.playing:
+		move_and_slide()
 
 
 func end_game():
 	const end_scene = preload("res://scenes/endScene.tscn")
 	get_tree().change_scene_to_packed(end_scene)
+
 	
